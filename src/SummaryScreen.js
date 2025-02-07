@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSurveyContext } from './SurveyContext';
 import { supabase } from './../supabaseClient'; 
-import Confetti from 'expo-confetti';
+//import Confetti from 'expo-confetti';
 
 const SummaryScreen = ({ route, navigation }) => {
     const { answers, surveyId } = route.params || {};
@@ -214,7 +214,6 @@ const SummaryScreen = ({ route, navigation }) => {
     
     return (
         <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
-            {isUpdated && <Confetti count={300} />}
             <Text style={styles.title}>Dziękujemy za Twój wkład!</Text>
             <Text style={styles.subtitle1}>Twoje zaangażowanie ma ogromne znaczenie – każda odpowiedź przyczynia się do rozwoju nauki i poprawy jakości opieki medycznej. 
                 Twoja opinia to krok w stronę lepszej medycyny! Dziękujemy za czas, zaufanie i wkład w to ważne badanie.

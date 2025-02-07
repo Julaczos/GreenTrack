@@ -32,7 +32,6 @@
     "@supabase/supabase-js": "^2.46.1",
     "expo": "~52.0.31",
     "expo-av": "~15.0.2",
-    "expo-confetti": "^0.1.206",
     "expo-constants": "~17.0.3",
     "expo-dev-client": "~5.0.11",
     "expo-device": "~7.0.2",
