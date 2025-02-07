@@ -1,0 +1,67 @@
+{
+  "name": "surveyapp",
+  "version": "1.0.0",
+  "main": "expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "doctor": {
+    "reactNativeDirectoryCheck": {
+      "exclude": ["@expo-google-fonts/lexend, @expo/config-plugins, @expo/metro-runtime, @expo/prebuild-config, @react-native-community/masked-view, expo-confetti, expo-server-sdk, firebase, node-cron, react-rewards, styled-components"],
+      "listUnknownPackages": false
+    }
+  },
+  "dependencies": {
+    "@expo-google-fonts/lexend": "^0.2.3",
+    "@expo/config-plugins": "^9.0.15",
+    "@expo/metro-runtime": "~4.0.1",
+    "@expo/prebuild-config": "^8.0.26",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/progress-bar-android": "^1.0.5",
+    "@react-native-community/slider": "^4.5.5",
+    "@react-native-firebase/app": "^21.2.0",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
+    "@supabase/supabase-js": "^2.46.1",
+    "expo": "~52.0.31",
+    "expo-av": "~15.0.2",
+    "expo-confetti": "^0.1.206",
+    "expo-constants": "~17.0.3",
+    "expo-dev-client": "~5.0.11",
+    "expo-device": "~7.0.2",
+    "expo-font": "~13.0.2",
+    "expo-linear-gradient": "~14.0.2",
+    "expo-mail-composer": "~14.0.2",
+    "expo-notifications": "~0.29.13",
+    "expo-server-sdk": "^3.13.0",
+    "expo-status-bar": "~2.0.1",
+    "expo-video": "~2.0.5",
+    "firebase": "^11.0.1",
+    "formik": "^2.4.6",
+    "node-cron": "^3.0.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.7",
+    "react-native-gesture-handler": "~2.20.2",
+    "react-native-paper": "^5.12.5",
+    "react-native-progress": "^5.0.1",
+    "react-native-reanimated": "~3.16.1",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-screens": "~4.4.0",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-video": "^6.7.0",
+    "react-native-web": "~0.19.10",
+    "react-native-webview": "13.12.5",
+    "react-native-youtube-iframe": "^2.3.0",
+    "react-rewards": "^2.1.0",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

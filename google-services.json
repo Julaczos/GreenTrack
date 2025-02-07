@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875238354422",
+    "project_id": "surveyapp-c9491",
+    "storage_bucket": "surveyapp-c9491.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875238354422:android:de131e35faa701f5196bd7",
+        "android_client_info": {
+          "package_name": "Survey.App"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAYx-vHGABbOOBzZHJWSZX_WkawfGKOy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
