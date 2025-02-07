@@ -10,7 +10,9 @@
   },
   "doctor": {
     "reactNativeDirectoryCheck": {
-      "exclude": ["@expo-google-fonts/lexend, @expo/config-plugins, @expo/metro-runtime, @expo/prebuild-config, @react-native-community/masked-view, expo-confetti, expo-server-sdk, firebase, node-cron, react-rewards, styled-components"],
+      "exclude": [
+        "@expo-google-fonts/lexend, @expo/config-plugins, @expo/metro-runtime, @expo/prebuild-config, @react-native-community/masked-view, expo-confetti, expo-server-sdk, firebase, node-cron, react-rewards, styled-components"
+      ],
       "listUnknownPackages": false
     }
   },
@@ -26,6 +28,7 @@
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
+    "@shopify/react-native-skia": "1.5.0",
     "@supabase/supabase-js": "^2.46.1",
     "expo": "~52.0.31",
     "expo-av": "~15.0.2",
@@ -61,7 +64,8 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@react-native-community/cli": "latest"
   },
   "private": true
 }
