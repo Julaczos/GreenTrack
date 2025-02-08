@@ -4,7 +4,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSurveyContext } from './SurveyContext';
 import { supabase } from './../supabaseClient'; 
-//import Confetti from 'expo-confetti';
 
 const SummaryScreen = ({ route, navigation }) => {
     const { answers, surveyId } = route.params || {};
