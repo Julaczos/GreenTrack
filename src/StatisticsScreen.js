@@ -150,7 +150,6 @@ const StatisticsScreen = () => {
                 )}
 
                 <TouchableOpacity onPress={() => {
-                    console.log("Przekazywany userId:", currentUser?.user_id); 
                     navigation.navigate('CardsScreen', { userId: currentUser.user_id })}} style={styles.button}>
                     <LinearGradient colors={['#ff9800', '#ff5722']} style={styles.buttonGradient1}>
                         <Text style={styles.buttonText}>Zdobyte karty</Text>
@@ -178,11 +177,18 @@ const styles = StyleSheet.create({
     gradient: {
         flex: 1,
     },
-    buttonGradient1: { paddingVertical: 15, borderRadius: 25, width: '50%', alignItems: 'center', alignContent: 'center', marginLeft: 90, },
+    buttonGradient1: { paddingVertical: 15, borderRadius: 25, width: '100%', alignItems: 'center', alignContent: 'center' },
     button: {
         width: '45%',         
         borderRadius: 10,
+        alignContent: 'center',
         overflow: 'hidden',   
+    },
+    buttonText: {
+        fontSize: 18,
+        color: '#fff',
+        fontWeight: 'bold',
+        zIndex: 2000,
     },
     scrollContainer: {
         flexGrow: 1,

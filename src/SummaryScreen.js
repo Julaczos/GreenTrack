@@ -151,15 +151,31 @@ const SummaryScreen = ({ route, navigation }) => {
 
     const awardCard = async (userId) => {
         try {
-            // Pobierz wszystkie dostępne karty
             const { data: cards, error: cardsError } = await supabase.from('cards').select('*');
             if (cardsError) throw cardsError;
     
-            // Losowanie karty (np. losujemy jedną kartę)
-            const randomCard = cards[Math.floor(Math.random() * cards.length)];
-            console.log(randomCard);
+            // Definiowanie wag dla rzadkości
+            const rarityWeights = {
+                common: 50,
+                rare: 30,
+                epic: 15,
+                legendary: 5
+            };
     
-            // Sprawdź, czy użytkownik już posiada tę kartę, ale nie sprawdzaj, czy ma ją tylko raz, zliczaj wszystkie powtórzenia
+            // Tworzenie rozszerzonej listy kart w zależności od wagi
+            let weightedCards = [];
+            cards.forEach(card => {
+                const weight = rarityWeights[card.rarity?.toLowerCase()] || 1;
+                for (let i = 0; i < weight; i++) {
+                    weightedCards.push(card);
+                }
+            });
+    
+            // Wybór losowej karty z uwzględnieniem wag
+            const randomCard = weightedCards[Math.floor(Math.random() * weightedCards.length)];
+            console.log('Wylosowana karta:', randomCard);
+    
+            // Sprawdzanie, czy użytkownik już posiada kartę
             const { data: userCards, error: userCardsError } = await supabase
                 .from('user_cards')
                 .select('*')
@@ -169,7 +185,6 @@ const SummaryScreen = ({ route, navigation }) => {
             if (userCardsError) throw userCardsError;
     
             if (userCards.length > 0) {
-                // Jeśli karta już istnieje, zwiększ licznik
                 const currentCard = userCards[0];
                 await supabase
                     .from('user_cards')
@@ -177,16 +192,14 @@ const SummaryScreen = ({ route, navigation }) => {
                     .eq('user_id', userId)
                     .eq('card_id', randomCard.card_id);
             } else {
-                // Jeśli karta nie istnieje, dodaj ją do tabeli z licznikiem 1
                 await supabase.from('user_cards').insert({
                     user_id: userId,
                     card_id: randomCard.card_id,
-                    earned_at: new Date(),
+                    created_at: new Date(),
                     count: 1,
                 });
             }
     
-            // Pokazujemy powiadomienie
             Toast.show({
                 type: 'success',
                 text1: 'Gratulacje!',
