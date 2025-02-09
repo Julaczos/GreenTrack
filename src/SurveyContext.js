@@ -30,7 +30,7 @@ export const SurveyProvider = ({ children }) => {
     ); */
     
 
-    const incrementPoints = async (amount) => {
+  /*  const incrementPoints = async (amount) => {
         try {
             const { error } = await supabase
                 .from('users')
@@ -44,7 +44,7 @@ export const SurveyProvider = ({ children }) => {
             console.error('Error updating points:', error.message);
             throw error; 
         }
-    };
+    }; */
 
     const addSurvey = async (title, questions) => {
         try {
@@ -125,7 +125,6 @@ export const SurveyProvider = ({ children }) => {
             throw error;  
         }
     
-        console.log('Responses saved successfully:', data);
     };
     
     
@@ -192,7 +191,6 @@ export const SurveyProvider = ({ children }) => {
             setCurrentUser, 
             loginUser,
             points, 
-            incrementPoints,
             averageDailySurveys, 
             setAverageDailySurveys,
             fetchAverageDailySurveys,

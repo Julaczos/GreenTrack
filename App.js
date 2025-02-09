@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Toast from 'react-native-toast-message';
 import WelcomeScreen from './src/WelcomeScreen'; 
 import LoginScreen from './src/LoginScreen'; 
 import HomeScreen from './src/HomeScreen';
@@ -15,6 +16,7 @@ import { SurveyProvider } from './src/SurveyContext';
 import SurveyDetails from './src/SurveyDetails';
 import AddUserScreen from './src/addUserScreen';
 import NotificationsScreen from './src/NotificationsScreen';
+import CardsScreen from './src/CardsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,8 +71,10 @@ export default function App() {
                     <Stack.Screen name="SurveyChange" component={SurveyDetails} />
                     <Stack.Screen name="addUserScreen" component={AddUserScreen} />
                     <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
+                    <Stack.Screen name="CardsScreen" component={CardsScreen} />
                 </Stack.Navigator>      
             </NavigationContainer>
+            <Toast/>
         </SurveyProvider>
     );
 }

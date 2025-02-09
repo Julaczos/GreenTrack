@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView  } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity  } from 'react-native';
 import { useSurveyContext } from './SurveyContext';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { supabase } from './../supabaseClient';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -13,6 +13,7 @@ const StatisticsScreen = () => {
     const [averageDailySurveys, setAverageDailySurveys] = useState(0);
     const [badges, setBadges] = useState([]);
     const [userLevel, setUserLevel] = useState(null);
+    const navigation = useNavigation();
 
     const fetchUserPoints = async () => {
         try {
@@ -148,6 +149,14 @@ const StatisticsScreen = () => {
                     </View>
                 )}
 
+                <TouchableOpacity onPress={() => {
+                    console.log("Przekazywany userId:", currentUser?.user_id); 
+                    navigation.navigate('CardsScreen', { userId: currentUser.user_id })}} style={styles.button}>
+                    <LinearGradient colors={['#ff9800', '#ff5722']} style={styles.buttonGradient1}>
+                        <Text style={styles.buttonText}>Zdobyte karty</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+
                 <Text style={styles.badgesTitle}>Odznaki:</Text>
                 {badges.length > 0 ? (
                     <FlatList
@@ -168,6 +177,12 @@ const StatisticsScreen = () => {
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
+    },
+    buttonGradient1: { paddingVertical: 15, borderRadius: 25, width: '50%', alignItems: 'center', alignContent: 'center', marginLeft: 90, },
+    button: {
+        width: '45%',         
+        borderRadius: 10,
+        overflow: 'hidden',   
     },
     scrollContainer: {
         flexGrow: 1,

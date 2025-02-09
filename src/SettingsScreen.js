@@ -7,6 +7,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient'; 
 import { Feather } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Toast from 'react-native-toast-message';
 
 
 const SettingsScreen = () => {
@@ -114,15 +115,31 @@ const SettingsScreen = () => {
             }
     
             if (codes.length === 0) {
-                Alert.alert('Brak kodów', 'Brak dostępnych kodów.');
+                Toast.show({
+                    type: 'error', 
+                    text1: 'Brak kodów!',
+                    text2: 'Brak dostępnych kodów do wysłania',
+                    position: 'top',
+                    visibilityTime: 4000,
+                    text1Style: { fontSize: 18, fontWeight: 'bold' },
+                    text2Style: { fontSize: 15 },
+
+                });                
                 return;
             }
     
             const codeToSend = codes[0].code; 
+                    Toast.show({
+                        type: 'success', 
+                        text1: 'Sukces!',
+                        text2: `Kod wysłany do użytkownika ${randomUser.login}`,
+                        position: 'top',
+                        visibilityTime: 4000,
+                        text1Style: { fontSize: 18, fontWeight: 'bold' },
+                        text2Style: { fontSize: 15 },
     
-            
-                Alert.alert('Sukces', `Kod został wysłany do użytkownika ${randomUser.user_id}`);
-                const { error: updateError } = await supabase
+                    });
+                    const { error: updateError } = await supabase
                     .from('codes')
                     .update({ is_used: true })
                     .eq('code', codeToSend);
@@ -298,14 +315,15 @@ const styles = StyleSheet.create({
     infoText: {fontSize: 18, color: '#fff', marginBottom: 5,},
     buttonGradient2: {paddingVertical: 15, borderRadius: 25, width: '50%', alignItems: 'center', alignContent: 'center', marginLeft: 90, marginTop: 10,},
     notificationsContainer: { marginTop: 20 },
-    notificationsTitle: { fontSize: 20, color: '#fff', marginBottom: 10 },
+    notificationsTitle: { fontSize: 20, color: '#fff', marginBottom: 10, fontWeight: 'bold', marginLeft: 85 },
     notificationItem: {
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         padding: 10,
         borderRadius: 8,
         marginBottom: 10,
         marginLeft: 20,
         marginRight: 20,
+
     },
     notificationText: { fontSize: 16, color: '#000' },
     noNotificationsText: { fontSize: 16, color: '#aaa', textAlign: 'center' },

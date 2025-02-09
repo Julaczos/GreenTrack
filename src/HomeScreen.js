@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';  
 import { supabase } from '../supabaseClient'; 
+import Toast from 'react-native-toast-message';
 
 const HomeScreen = ({ navigation }) => {
     const { currentUser } = useSurveyContext();
@@ -23,7 +24,15 @@ const HomeScreen = ({ navigation }) => {
           Alert.alert('Błąd', error.message);
         } else {
           notifications.forEach(notification => {
-            Alert.alert("Nowe Powiadomienie", notification.message);
+            Toast.show({
+                type: 'success', 
+                text1: 'Gratulacje',
+                text2: `${notification.message}`,
+                position: 'top',
+                visibilityTime: 5000,
+                text1Style: { fontSize: 18, fontWeight: 'bold' },
+                text2Style: { fontSize: 15 },
+            });            
             console.log(notification.id)
             markNotificationAsRead(notification.id)
           });
@@ -93,7 +102,16 @@ const HomeScreen = ({ navigation }) => {
             const diffInDays = Math.floor((now - lastActivity) / (1000 * 60 * 60 * 24));
     
             if (diffInDays >= 7) { 
-                Alert.alert('Utrata punktów', 'Przez nieaktywność straciłeś 10% punktów!')
+                Toast.show({
+                    type: 'error', 
+                    text1: 'Sukces!',
+                    text2: `Kod wysłany do użytkownika ${randomUser.user_id}`,
+                    position: 'top',
+                    visibilityTime: 4000,
+                    text1Style: { fontSize: 18, fontWeight: 'bold' },
+                    text2Style: { fontSize: 15 },
+                    
+                });
                 const newPoints = Math.max(0, Math.floor(user.points * 0.9)); 
     
                 const { error: updateError } = await supabase

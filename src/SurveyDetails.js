@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { supabase } from './../supabaseClient';
 import { LinearGradient } from 'expo-linear-gradient';
+import Toast from 'react-native-toast-message';
+
 
 const SurveyDetails = ({ route }) => {
     const { surveyId, surveyTitle } = route.params;
@@ -36,9 +38,7 @@ const SurveyDetails = ({ route }) => {
                     );
 
                     setQuestions(questionsWithOptions);
-                } else {
-                    Alert.alert('Informacja', 'Brak pytań dla tej ankiety.');
-                }
+                } 
             } catch (error) {
                 Alert.alert('Błąd', 'Nie udało się załadować danych: ' + error.message);
             }
@@ -72,7 +72,15 @@ const SurveyDetails = ({ route }) => {
                         { ...newQuestionData, options: [], newOption: '' }
                     ]);
                     setNewQuestion('');
-                    Alert.alert('Sukces', 'Dodano pytanie!');
+                    Toast.show({
+                        type: 'success', 
+                        text1: 'Sukces!',
+                        text2: 'Dodano pytanie!',
+                        position: 'top',
+                        visibilityTime: 4000,
+                        text1Style: { fontSize: 22, fontWeight: 'bold' },
+                        text2Style: { fontSize: 15 },
+                    });                
                 }
             }
         } else {
@@ -108,7 +116,7 @@ const SurveyDetails = ({ route }) => {
     };
 
     const handleToggleQuestionType = async (questionId) => {
-        const questionTypes = ['tex', 'opt', 'sli', 'mul', 'rat'];
+        const questionTypes = ['tex', 'opt', 'sli', 'mul', 'rat', 'pic'];
         
         setQuestions(prevQuestions => 
             prevQuestions.map(q => {
@@ -149,6 +157,7 @@ const SurveyDetails = ({ route }) => {
                     <TextInput
                         style={styles.input}
                         placeholder="Wpisz nowe pytanie"
+                        placeholderTextColor='#ddd'
                         value={newQuestion}
                         onChangeText={setNewQuestion}
                     />
@@ -170,6 +179,7 @@ const SurveyDetails = ({ route }) => {
                             <TextInput
                                 style={styles.input}
                                 placeholder="Dodaj opcję"
+                                placeholderTextColor='#ddd'
                                 value={item.newOption}
                                 onChangeText={(text) => handleNewOptionChange(text, item.question_id)}
                             />
@@ -189,7 +199,7 @@ const SurveyDetails = ({ route }) => {
 
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: 20, backgroundColor: 'transparent' }, // transparent background
+    container: { flex: 1, padding: 20, backgroundColor: 'transparent' }, 
     title: { 
         fontSize: 24, 
         fontWeight: 'bold', 
@@ -199,10 +209,11 @@ const styles = StyleSheet.create({
         color: 'white' 
     },
     questionContainer: { 
-        marginBottom: 10, 
+        marginBottom: 20, 
+        marginTop: 20,
         padding: 10, 
         borderWidth: 1, 
-        borderColor: '#ccc', 
+        borderColor: 'rgba(255, 255, 255, 0.2)', 
         backgroundColor: 'rgba(255, 255, 255, 0.2)', 
         borderRadius: 15
     },
@@ -218,13 +229,14 @@ const styles = StyleSheet.create({
         textAlign: 'center' 
     },
     input: {
+        marginTop: 10,
         height: 40,
         borderColor: 'white',
         borderWidth: 1,
         marginBottom: 20,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: 'white' // Kolor tekstu na biały
+        color: 'white' 
     },
     shortButton: {
         backgroundColor: '#ff9800',

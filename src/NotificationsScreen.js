@@ -10,7 +10,7 @@ Notifications.setNotificationHandler({
         shouldShowAlert: true,
         shouldPlaySound: true,
         shouldSetBadge: false,
-    }),
+    }), 
 });
 
 const NotificationsScreen = () => {
@@ -62,9 +62,6 @@ const NotificationsScreen = () => {
     return (
         <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
             <Text style={styles.title}>Powiadomienia</Text>
-            <Text style={styles.tokenText}>
-                {expoPushToken ? `📱 Token:\n${expoPushToken}` : 'Brak tokena'}
-            </Text>
             <TouchableOpacity style={styles.button} onPress={sendTestNotification}>
                 <Text style={styles.buttonText}>Wyślij powiadomienie</Text>
             </TouchableOpacity>
