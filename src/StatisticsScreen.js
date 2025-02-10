@@ -156,6 +156,14 @@ const StatisticsScreen = () => {
                     </LinearGradient>
                 </TouchableOpacity>
 
+                
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('StreakScreen', { userId: currentUser.user_id })}} style={styles.button}>
+                    <LinearGradient colors={['#ff9800', '#ff5722']} style={styles.buttonGradient1}>
+                        <Text style={styles.buttonText}>Zdobyte karty</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+
                 <Text style={styles.badgesTitle}>Odznaki:</Text>
                 {badges.length > 0 ? (
                     <FlatList

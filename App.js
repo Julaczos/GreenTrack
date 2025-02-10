@@ -17,6 +17,7 @@ import SurveyDetails from './src/SurveyDetails';
 import AddUserScreen from './src/addUserScreen';
 import NotificationsScreen from './src/NotificationsScreen';
 import CardsScreen from './src/CardsScreen';
+import StreakScreen from './src/StreakScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,6 +73,7 @@ export default function App() {
                     <Stack.Screen name="addUserScreen" component={AddUserScreen} />
                     <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
                     <Stack.Screen name="CardsScreen" component={CardsScreen} />
+                    <Stack.Screen name="StreakScreen" component={StreakScreen} />
                 </Stack.Navigator>      
             </NavigationContainer>
             <Toast/>
