@@ -7,7 +7,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 const RankingScreen = () => {
     const [rankings, setRankings] = useState([]);
     const [loading, setLoading] = useState(false);
+
     const scaleValue = new Animated.Value(1);
+    const fadeAnim = new Animated.Value(0); 
+    const translateY = new Animated.Value(30); 
 
     const handlePressIn = () => {
         Animated.spring(scaleValue, {
@@ -29,7 +32,8 @@ const RankingScreen = () => {
             const { data, error } = await supabase
                 .from('users')
                 .select('login, points')
-                .order('points', { ascending: false });
+                .order('points', { ascending: false })
+                .limit(10);
 
             if (error) throw error;
 
@@ -60,6 +64,20 @@ const RankingScreen = () => {
         }, [])
     );
 
+    const renderItemAnimation = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true,
+        }).start();
+        
+        Animated.timing(translateY, {
+            toValue: 0,
+            duration: 1000,
+            useNativeDriver: true,
+        }).start();
+    };
+
     return (
         <LinearGradient
             colors={['#4c669f', '#3b5998', '#192f6a']}
@@ -72,31 +90,42 @@ const RankingScreen = () => {
                 <FlatList
                     data={rankings}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            onPressIn={handlePressIn}
-                            onPressOut={handlePressOut}
-                            activeOpacity={0.7}
-                        >
-                        <Animated.View style={styles.rankItem}>
-                            <Text style={[styles.rankText, styles.rankPosition]}>
-                                {`${item.rank}.`}
-                            </Text>
-                            <Text style={[styles.rankText, styles.rankLogin]}>
-                                {item.login}
-                            </Text>
-                            <Text style={[styles.rankText, styles.rankPoints]}>
-                                {`${item.points} pkt`}
-                            </Text>
-                        </Animated.View>
-                        </TouchableOpacity>
-                    )}
+                    renderItem={({ item, index }) => {
+                        renderItemAnimation();
+
+                        return (
+                            <TouchableOpacity
+                                onPressIn={handlePressIn}
+                                onPressOut={handlePressOut}
+                                activeOpacity={0.7}
+                            >
+                                <Animated.View 
+                                    style={[
+                                        styles.rankItem, 
+                                        {
+                                            opacity: fadeAnim,
+                                            transform: [{ translateY }]
+                                        }
+                                    ]}
+                                >
+                                    <Text style={[styles.rankText, styles.rankPosition]}>
+                                        {`${item.rank}.`}
+                                    </Text>
+                                    <Text style={[styles.rankText, styles.rankLogin]}>
+                                        {item.login}
+                                    </Text>
+                                    <Text style={[styles.rankText, styles.rankPoints]}>
+                                        {`${item.points} pkt`}
+                                    </Text>
+                                </Animated.View>
+                            </TouchableOpacity>
+                        );
+                    }}
                 />
             )}
         </LinearGradient>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {

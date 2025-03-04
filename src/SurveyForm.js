@@ -201,7 +201,7 @@ const SurveyForm = ({ route, navigation }) => {
                     text2: 'Zdjęcie zostało poprawnie wysłane',
                     position: 'top',
                     visibilityTime: 4000,
-                    text1Style: { fontSize: 22, fontWeight: 'bold' },
+                    text1Style: { fontSize: 18, fontWeight: 'bold' },
                     text2Style: { fontSize: 15 },
                 });    
         } catch (error) {

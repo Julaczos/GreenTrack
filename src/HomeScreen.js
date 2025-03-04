@@ -104,8 +104,8 @@ const HomeScreen = ({ navigation }) => {
             if (diffInDays >= 7) { 
                 Toast.show({
                     type: 'error', 
-                    text1: 'Sukces!',
-                    text2: `Kod wysłany do użytkownika ${randomUser.user_id}`,
+                    text1: 'Utrata punktów!',
+                    text2: 'Przez nieaktywność stracono punkty!',
                     position: 'top',
                     visibilityTime: 4000,
                     text1Style: { fontSize: 18, fontWeight: 'bold' },

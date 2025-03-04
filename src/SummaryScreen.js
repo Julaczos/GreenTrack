@@ -154,7 +154,6 @@ const SummaryScreen = ({ route, navigation }) => {
             const { data: cards, error: cardsError } = await supabase.from('cards').select('*');
             if (cardsError) throw cardsError;
     
-            // Definiowanie wag dla rzadkości
             const rarityWeights = {
                 common: 50,
                 rare: 30,
@@ -162,7 +161,6 @@ const SummaryScreen = ({ route, navigation }) => {
                 legendary: 5
             };
     
-            // Tworzenie rozszerzonej listy kart w zależności od wagi
             let weightedCards = [];
             cards.forEach(card => {
                 const weight = rarityWeights[card.rarity?.toLowerCase()] || 1;
@@ -171,11 +169,9 @@ const SummaryScreen = ({ route, navigation }) => {
                 }
             });
     
-            // Wybór losowej karty z uwzględnieniem wag
             const randomCard = weightedCards[Math.floor(Math.random() * weightedCards.length)];
             console.log('Wylosowana karta:', randomCard);
     
-            // Sprawdzanie, czy użytkownik już posiada kartę
             const { data: userCards, error: userCardsError } = await supabase
                 .from('user_cards')
                 .select('*')
@@ -424,7 +420,7 @@ const SummaryScreen = ({ route, navigation }) => {
                     text2: `Zdobyłeś odznakę: ${badge.name}`,
                     position: 'top',
                     visibilityTime: 4000,
-                    text1Style: { fontSize: 22, fontWeight: 'bold' },
+                    text1Style: { fontSize: 18, fontWeight: 'bold' },
                     text2Style: { fontSize: 15 },
                 });
             }, index * 4500);

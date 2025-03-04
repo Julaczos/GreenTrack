@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { supabase } from '../supabaseClient';
+import Toast from 'react-native-toast-message';
 
 const AddUserScreen = ({ navigation }) => {
     const [login, setlogin] = useState('');
@@ -11,7 +12,15 @@ const AddUserScreen = ({ navigation }) => {
 
     const handleAddUser = async () => {
         if (!login || !password || !birthdate || !display_name) {
-            Alert.alert('Błąd', 'Wprowadź dane!');
+            Toast.show({
+                type: 'error', 
+                text1: 'Brak danych',
+                text2: 'Wpisz poprawne dane!',
+                position: 'top',
+                visibilityTime: 4000,
+                text1Style: { fontSize: 18, fontWeight: 'bold' },
+                text2Style: { fontSize: 15 },
+            });                        
             return;
         }
         
@@ -22,7 +31,15 @@ const AddUserScreen = ({ navigation }) => {
             
             if (error) throw error;
             
-            Alert.alert('Sukces', 'Użytkownik dodany pomyślnie!');
+            Toast.show({
+                type: 'success', 
+                text1: 'Sukces!',
+                text2: 'Użytkownik poprawnie dodany!',
+                position: 'top',
+                visibilityTime: 4000,
+                text1Style: { fontSize: 18, fontWeight: 'bold' },
+                text2Style: { fontSize: 15 },
+            });            
             navigation.goBack();
         } catch (err) {
             Alert.alert('Błąd', err.message);

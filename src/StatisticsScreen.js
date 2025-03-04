@@ -160,7 +160,7 @@ const StatisticsScreen = () => {
                 <TouchableOpacity onPress={() => {
                     navigation.navigate('StreakScreen', { userId: currentUser.user_id })}} style={styles.button}>
                     <LinearGradient colors={['#ff9800', '#ff5722']} style={styles.buttonGradient1}>
-                        <Text style={styles.buttonText}>Zdobyte karty</Text>
+                        <Text style={styles.buttonText}>Seria</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 
@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignContent: 'center',
         overflow: 'hidden',   
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: 18,
