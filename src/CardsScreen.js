@@ -102,7 +102,7 @@ function CardsScreen({ route }) {
         customConfig={() => ({ type: "positive", viewCount: 5 })}
       />
       <Pagination.Basic
-        progress={progress}
+        progress={progress} 
         data={cards}
         dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50 }}
         containerStyle={{ gap: 5, marginTop: 10 }}
