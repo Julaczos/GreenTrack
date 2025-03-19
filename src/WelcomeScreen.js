@@ -3,19 +3,19 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
 
     return (
-        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
+        <LinearGradient colors={['#063607', '#247826', '#0c3b0d']} style={styles.container}>
             <StatusBar style="light" />
             
             <View style={styles.logoContainer}>
-                <AntDesign name="form" size={80} color="white" />
-                <Text style={styles.title}>Witaj w SurveyApp</Text>
-                <Text style={styles.subtitle}>Odpowiadaj, zbieraj punkty i zdobywaj odznaki!</Text>
+                <Ionicons name="earth" size={100} color="white" />
+                <Text style={styles.title}>GreenTrack</Text>
+                <Text style={styles.subtitle}>Zmieniaj świat na lepsze dzięki prostym eko-akcjom!</Text>
             </View>
 
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>

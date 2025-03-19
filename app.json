@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SurveyApp",
-    "slug": "surveyapp",
+    "name": "GreenTrack",
+    "slug": "greentrack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.SurveyApp"
+      "package": "com.anonymous.GreenTrack"
     },
     "web": {
       "favicon": "./assets/favicon.png"
